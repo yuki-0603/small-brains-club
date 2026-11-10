@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ed">
+  <meta name="description" content="クラゲ、ミツバチ、ヤモリ、リクガメ。ちいさなAIたちと、気ままにオセロを。">
+  <title>ちいさな脳のオセロ — SMALL BRAINS CLUB</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="garden.css">
+  <script src="launch.js" defer></script>
+  <script src="rules.js" defer></script>
+  <script src="tiny.js" defer></script>
+  <script src="garden.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="ちいさな脳のオセロ ホーム"><img src="assets/mark.svg" width="34" height="34" alt=""><span>SMALL BRAINS <b>CLUB</b></span></a>
+      <button class="text-button howto-trigger" type="button"><span class="help-circle" aria-hidden="true">?</span> 遊びかた</button>
+    </header>
+    <section id="portable-launch" class="portable-launch" hidden aria-labelledby="launch-title">
+      <p>SMALL BRAINS CLUB</p>
+      <h1 id="launch-title">起動スクリプトから、あそびましょう。</h1>
+      <p>同じフォルダの <strong>start.bat（Windows）</strong>、<strong>start.command（macOS）</strong>、または <strong>sh start.sh（Linux）</strong> を実行してください。</p>
+      <p>Python 3.9以降が必要です。ブラウザが自動で開き、4匹の相手とオフラインで遊べます。</p>
+      <p>詳しくは同梱の <a href="README.md">README.md</a> をご覧ください。</p>
+    </section>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy"><p class="eyebrow"><span class="tiny-spark" aria-hidden="true">✳</span> ちいさな脳のオセロ</p><h1 id="page-title">ちいさな脳と、<span>ひと勝負。</span></h1><p class="intro-description">のんびりクラゲから、じっくりリクガメまで。<br class="mobile-break">生きものをモチーフにしたAIと、気ままに一局。</p></div>
+        <div class="intro-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><img src="assets/bee.svg" alt=""><span class="intro-note">small brain,<br>big possibilities.</span><span class="little-star star-one">✳</span><span class="little-star star-two">✧</span></div>
+      </section>
+
+      <section class="opponent-section" aria-labelledby="opponent-heading">
+        <div class="section-label"><h2 id="opponent-heading">今日のお相手をえらぼう</h2><span>4つの、ちいさな個性。</span></div>
+        <div class="opponent-list" role="group" aria-label="対戦相手を選択">
+          <button class="opponent-card selected jelly" type="button" data-model="10k" aria-pressed="true"><span class="opponent-art"><img src="assets/jelly.svg" alt=""></span><span class="opponent-copy"><span class="opponent-number">01 <span>· 10K</span></span><strong>クラゲ</strong><span class="opponent-caption">ゆらり、気ままに</span></span><span class="selection-mark" aria-hidden="true">✓</span><span class="model-status" id="status-10k">準備中</span></button>
+          <button class="opponent-card bee" type="button" data-model="1m" aria-pressed="false"><span class="opponent-art"><img src="assets/bee.svg" alt=""></span><span class="opponent-copy"><span class="opponent-number">02 <span>· 1M</span></span><strong>ミツバチ</strong><span class="opponent-caption">ひらり、ひと工夫</span></span><span class="selection-mark" aria-hidden="true">✓</span><span class="model-status" id="status-1m">選んで準備</span></button>
+          <button class="opponent-card gecko" type="button" data-model="3m" aria-pressed="false"><span class="opponent-art"><img src="assets/gecko.svg" alt=""></span><span class="opponent-copy"><span class="opponent-number">03 <span>· 3M</span></span><strong>ヤモリ</strong><span class="opponent-caption">するり、したたか</span></span><span class="selection-mark" aria-hidden="true">✓</span><span class="model-status" id="status-3m">まもなく準備</span></button>
+          <button class="opponent-card tortoise" type="button" data-model="10m" aria-pressed="false"><span class="opponent-art"><img src="assets/tortoise.svg" alt=""></span><span class="opponent-copy"><span class="opponent-number">04 <span>· 10M</span></span><strong>リクガメ</strong><span class="opponent-caption">のんびり、手ごわい</span></span><span class="selection-mark" aria-hidden="true">✓</span><span class="model-status" id="status-10m">選んで準備</span></button>
+        </div>
+      </section>
+
+      <div class="game-layout">
+        <section class="play-area" aria-label="オセロの対局">
+          <div class="scoreboard">
+            <div class="player-score human-score"><span class="score-stone black" id="human-stone" aria-hidden="true"></span><span class="score-person"><strong>あなた</strong><small id="human-color">黒・先手</small></span><span class="score-value" id="human-score">02</span></div>
+            <span class="score-vs">vs</span>
+            <div class="player-score ai-score"><span class="score-value" id="opponent-score">02</span><span class="score-person"><strong id="active-name">クラゲ</strong><small id="opponent-color">白・後手</small></span><img id="active-avatar" src="assets/jelly.svg" width="48" height="48" alt=""></div>
+          </div>
+
+          <div class="board-frame">
+            <div class="coordinates coordinates-top" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
+            <div class="board-row"><div class="coordinates coordinates-side" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div><div id="board" role="group" aria-label="オセロ盤面 8行8列" aria-busy="false"></div></div>
+            <span class="board-stamp" aria-hidden="true">TAKE YOUR TIME, MAKE YOUR MOVE.</span>
+          </div>
+
+          <div class="turn-status" role="status" aria-live="polite"><span class="turn-orb" aria-hidden="true"></span><strong id="turn-title">クラゲを起こしています…</strong><span id="move-count">0 手目</span></div>
+          <p id="game-message" class="game-message">まもなく遊べます。</p>
+          <div class="board-actions"><button type="button" class="text-button" id="undo" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 3 10l5 5M3 10h10a6 6 0 0 1 0 12" transform="translate(1 -2)"/></svg>ひとつ戻る</button><label class="hint-toggle"><input id="hints" type="checkbox" checked><span class="toggle-track" aria-hidden="true"></span>置ける場所を表示</label></div>
+          <div class="game-result" id="game-result" hidden><span class="result-spark" aria-hidden="true">✳</span><div><h2 id="result-title"></h2><p id="result-description"></p></div><div class="result-inline-actions"><button class="text-button" id="show-result" type="button">結果を見る</button><button class="text-button" id="play-again" type="button">もう一局 <span aria-hidden="true">↗</span></button></div></div>
+        </section>
+
+        <aside class="companion-panel" aria-label="相手の紹介と対局設定">
+          <section class="companion-card jelly" id="companion-card">
+            <div class="companion-topline"><span id="companion-category">01 / OCEAN DAYDREAMER</span><span class="parameter-pill" id="parameter-pill">10K</span></div>
+            <div class="companion-illustration"><span class="illustration-halo"></span><span class="illustration-spark spark-a" aria-hidden="true">✧</span><img id="companion-image" src="assets/jelly.svg" alt="やわらかな紫色のクラゲのイラスト"><span class="illustration-spark spark-b" aria-hidden="true">✳</span><span class="illustration-ground"></span></div>
+            <p class="companion-quote" id="companion-quote">「考えごとも、ゆらゆらと。」</p>
+            <h2 id="companion-name">クラゲ</h2><p class="companion-description" id="companion-description">流れにまかせて、ひとつずつ。<br>はじめの一局に、ぴったりのお相手。</p>
+            <div class="brain-caption"><span class="brain-dot" aria-hidden="true"></span><span id="brain-caption">約1万パラメータの、小さなAI。</span></div>
+          </section>
+          <div class="settings">
+            <fieldset><legend>あなたの色</legend><div class="color-options"><label><input type="radio" name="human-color" value="black" checked><span><i class="mini-stone black" aria-hidden="true"></i>黒 <small>先手</small></span></label><label><input type="radio" name="human-color" value="white"><span><i class="mini-stone white" aria-hidden="true"></i>白 <small>後手</small></span></label></div></fieldset>
+            <button class="start-button" id="new-game" type="button" disabled><span id="start-label">クラゲとあそぶ</span><span aria-hidden="true">↗</span></button>
+            <p id="selection-note" class="selection-note" role="status">相手と色の変更は、新しい対局から。</p>
+            <button id="retry-model" class="text-button" type="button" hidden>もう一度読み込む ↻</button>
+          </div>
+          <div class="quiet-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4C8 3 3 8 6 15c7 5 14-1 13-11ZM6 20c0-6 4-9 8-12"/></svg><p>急がなくて、大丈夫。<br>あなたのペースで、楽しもう。</p></div>
+        </aside>
+      </div>
+
+      <section class="tech-section" id="how-it-thinks" aria-labelledby="tech-title">
+        <div class="tech-heading"><p class="eyebrow"><span class="tiny-spark" aria-hidden="true">✳</span> A LITTLE SCIENCE</p><h2 id="tech-title">この一手は、<br>ちいさな「直感」。</h2><p class="tech-subtitle">生きものたちの、頭のなかを少しだけ。</p></div>
+        <div class="tech-body"><p>ミツバチ・ヤモリ・リクガメの頭脳は、<strong>CNN（畳み込みニューラルネットワーク）</strong>という機械学習モデル。たくさんの盤面と、お手本の一手から、石の並びのパターンを学びました。</p>
+          <div class="intuition-flow" aria-label="今の盤面から、学習したパターンを使って、一手を選びます"><span><span class="flow-step">01</span>盤面を見る</span><span class="flow-arrow" aria-hidden="true">→</span><span><span class="flow-step">02</span>パターンを捉える</span><span class="flow-arrow" aria-hidden="true">→</span><span><span class="flow-step">03</span>一手を選ぶ</span></div>
+          <p>何手も先の展開を調べる<strong>探索アルゴリズムは使っていません。</strong>今の盤面を見て、置ける場所の中から良さそうな一手を選ぶ。いわば、学習で身につけた「直感」で打っています。</p>
+          <p class="tech-footnote">クラゲの頭脳は、さらに小さな全結合ニューラルネットワーク（MLP）。こちらも、探索を使わず一手を選びます。</p>
+        </div>
+      </section>
+      <section class="bottom-note"><span class="tiny-spark" aria-hidden="true">✳</span><p>ちいさな頭脳にも、<strong>大きなひらめき。</strong></p><button class="text-button howto-trigger" type="button">このオセロについて <span aria-hidden="true">↗</span></button></section>
+    </main>
+    <footer class="site-footer"><span>SMALL BRAINS CLUB <span aria-hidden="true">·</span> OTHELLO AI LAB</span><span>Made for a little thinking break.</span></footer>
+  </div>
+
+  <dialog id="result-dialog" class="result-popup" aria-labelledby="popup-result-title" aria-describedby="popup-result-message">
+    <button class="dialog-close" type="button" aria-label="結果を閉じる">×</button>
+    <p class="eyebrow">THANKS FOR THE GAME</p>
+    <div class="result-portrait"><span class="result-spark" aria-hidden="true">✳</span><img id="result-avatar" src="assets/jelly.svg" width="112" height="112" alt=""><span class="result-spark" aria-hidden="true">✳</span></div>
+    <h2 id="popup-result-title">一局、おつかれさまでした。</h2>
+    <p id="popup-result-message"></p>
+    <div class="final-score" aria-label="最終的な石の数">
+      <div><span class="final-player"><i id="result-human-stone" class="mini-stone black" aria-hidden="true"></i>あなた<span id="result-human-color">黒</span></span><strong id="result-human-score">0</strong></div>
+      <span class="final-score-divider" aria-hidden="true">—</span>
+      <div><span class="final-player"><i id="result-ai-stone" class="mini-stone white" aria-hidden="true"></i><span id="result-opponent-name">クラゲ</span><span id="result-ai-color">白</span></span><strong id="result-ai-score">0</strong></div>
+    </div>
+    <button id="result-rematch" class="start-button" type="button">同じ相手ともう一局 <span aria-hidden="true">↗</span></button>
+    <button id="result-return" class="text-button" type="button" autofocus>盤面にもどる</button>
+  </dialog>
+  <dialog id="howto-dialog" aria-labelledby="howto-title"><button class="dialog-close" type="button" aria-label="閉じる">×</button><p class="eyebrow">A LITTLE GUIDE</p><h2 id="howto-title">石をはさんで、<br>ちょっとひと勝負。</h2><ol class="howto-list"><li><strong>相手の石をはさもう。</strong><p>縦・横・斜めに自分の石ではさむと、相手の石が自分の色に変わります。</p></li><li><strong>丸いしるしが、置ける場所。</strong><p>黒が先手。置ける場所がないときは、自動でパスします。</p></li><li><strong>最後に、石が多いほうの勝ち。</strong><p>ふたりとも置けなくなったらおしまい。「ひとつ戻る」で考え直しても大丈夫。</p></li></ol><div class="about-note"><strong>生きものの名前を借りた、4つのAI。</strong><p>10K・1M・3M・10MはAIのパラメータ数の目安です。AIはあなたの端末で考えます。モデルを準備している間も、クラゲと遊べます。</p></div><button class="start-button dialog-close-button" type="button">あそんでみる <span aria-hidden="true">↗</span></button></dialog>
+  <dialog id="restart-dialog" aria-labelledby="restart-title"><p class="eyebrow">ONE MORE GAME?</p><h2 id="restart-title">新しい対局をはじめる？</h2><p>今の対局を終えて、選んだお相手と遊びます。</p><div class="dialog-actions"><button id="cancel-restart" class="secondary-button" type="button">今の対局にもどる</button><button id="confirm-restart" class="start-button" type="button">はじめる ↗</button></div></dialog>
+</body>
+</html>

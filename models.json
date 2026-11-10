@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "release": "garden-preview-20261110-v1",
+  "default_model": "10k",
+  "background_model": "3m",
+  "runtime": "onnxruntime-web@1.31.1",
+  "models": {
+    "10k": {
+      "name": "クラゲ",
+      "url": "models/10k-54f4868c2ffdf760.bin",
+      "sha256": "54f4868c2ffdf76059c820ce45db861251db9e585cabc1fa965d745458d3a1dd",
+      "bytes": 39488,
+      "parameters": 9872,
+      "layers": [
+        {
+          "inputs": 128,
+          "outputs": 48,
+          "weight_offset": 0,
+          "bias_offset": 6144
+        },
+        {
+          "inputs": 48,
+          "outputs": 32,
+          "weight_offset": 6192,
+          "bias_offset": 7728
+        },
+        {
+          "inputs": 32,
+          "outputs": 64,
+          "weight_offset": 7760,
+          "bias_offset": 9808
+        }
+      ],
+      "source_onnx_sha256": "e4986aa95ba222706e94088cbd468effc97aa6478527792f765eaf9526ca58a8",
+      "checkpoint_sha256": "0633cc5d09065782ee933624877b37a88ce489c512919b2a11982fd2266fba63"
+    },
+    "1m": {
+      "name": "ミツバチ",
+      "url": "models/1m-int8-01a9fa297b706818.bin",
+      "metadata": "models/1m-int8-01a9fa297b706818.json",
+      "sha256": "01a9fa297b7068181936a46d15c6d91571801eec2e8869152e5630aefef431c8",
+      "blob_bytes": 1067204,
+      "bytes": 1077261,
+      "expanded_bytes": 4010992,
+      "expanded_sha256": "dec92889698373632ce86f357525976b43c3de47c35da15282051776975d2797",
+      "parameters": 1003273,
+      "source_onnx_sha256": "dbf1ffa49b9ca9d60b3a58f3b463a03a354092df5488c9e1d79cb9a4149c6ea0",
+      "checkpoint_sha256": "5bd953aa58b9f310eda316f5645ec4ca1e3838e1e3e3a39d4be995f8ab5a0acc"
+    },
+    "3m": {
+      "name": "ヤモリ",
+      "url": "models/3m-int8-85e45c0a209bb401.bin",
+      "metadata": "models/3m-int8-85e45c0a209bb401.json",
+      "sha256": "85e45c0a209bb401b44ad8f65708d26b4cf77c9bd65345471fed793981711dc0",
+      "blob_bytes": 3205604,
+      "bytes": 3219405,
+      "expanded_bytes": 12056594,
+      "expanded_sha256": "442fd8216be983db797ad4e5a2e7b42917f8312f6f37b7383829d60617ca15a3",
+      "parameters": 3015373,
+      "source_onnx_sha256": "058be4e967597f19dc8ab72fb8729af5951da4532d7ca872beec41c30cdd22e7",
+      "checkpoint_sha256": "6b0646abae71c444a29258bc1eccdb639a7ede799b8a841c3ad6b2a3cd136b7a"
+    },
+    "10m": {
+      "name": "リクガメ",
+      "url": "models/10m-int8-5821a6a47b88c15d.bin",
+      "metadata": "models/10m-int8-5821a6a47b88c15d.json",
+      "sha256": "5821a6a47b88c15d88d1a14a4425d781c3ccbfca1d5109be9f9f881786e25bf8",
+      "blob_bytes": 10624038,
+      "bytes": 10645126,
+      "expanded_bytes": 39984846,
+      "expanded_sha256": "3ef173f869b5bbaa68a170cd0667258c9aada3cbccc68f1c089c27728e338a06",
+      "parameters": 9998791,
+      "source_onnx_sha256": "4aab5978d792472768366211c4d14663feced9448db583cf16a8d4ba9c66d758",
+      "checkpoint_sha256": "7e61688e7b736443b956c23d893e288e12f238cf0c9e3214bcc1753b85a34a96"
+    }
+  }
+}
